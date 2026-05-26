@@ -1,0 +1,21 @@
+/ app/views/layouts/application.html.slim
+doctype html
+html lang="es"
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name="theme-color" content="#0f766e"
+    title
+      - if content_for?(:title)
+        = yield(:title)
+        |  — Hive Avances
+      - else
+        | Hive Avances
+    link rel="manifest" href="/manifest.webmanifest"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application"
+    = javascript_importmap_tags
+  body data-controller="pwa-install"
+    = render "layouts/flash"
+    = yield

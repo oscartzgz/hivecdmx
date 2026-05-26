@@ -1,0 +1,16 @@
+/ app/views/sessions/new.html.slim
+div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:var(--space-4)"
+  div style="width:100%;max-width:360px"
+    div.topbar style="border-radius:var(--radius-lg);margin-bottom:var(--space-6)"
+      div
+        p.topbar__eyebrow Hive Centro Histórico
+        h1.topbar__title Levantamiento diario
+
+    = form_with url: session_path, scope: :session do |f|
+      .form-field
+        = f.label :email_address, "Correo electrónico"
+        = f.email_field :email_address, autocomplete: "email", autofocus: true
+      .form-field
+        = f.label :password, "Contraseña"
+        = f.password_field :password, autocomplete: "current-password"
+      = f.submit "Entrar", class: "btn", style: "width:100%"
