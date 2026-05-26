@@ -1,0 +1,27 @@
+/* app/assets/stylesheets/_components/status_pill.css */
+.status-pill {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.status-pill--pendiente {
+  background: var(--color-pending-bg);
+  color: var(--color-pending);
+  border-color: var(--color-border);
+}
+
+.status-pill--defectuoso {
+  background: var(--color-defective-bg);
+  color: var(--color-defective);
+  border-color: var(--color-defective-border);
+}
+
+.status-pill--completado {
+  background: var(--color-complete-bg);
+  color: var(--color-complete);
+  border-color: var(--color-complete-border);
+}

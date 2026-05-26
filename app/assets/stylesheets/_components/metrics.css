@@ -1,0 +1,36 @@
+/* app/assets/stylesheets/_components/metrics.css */
+.metrics {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+}
+
+.metric-card {
+  background: var(--color-card);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  flex: 1;
+  text-align: center;
+}
+
+.metric-card--defective { border-color: var(--color-defective-border); }
+
+.metric-card__value {
+  display: block;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.metric-card--complete  .metric-card__value { color: var(--color-complete); }
+.metric-card--defective .metric-card__value { color: var(--color-defective); }
+
+.metric-card__label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
