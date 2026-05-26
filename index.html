@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0f766e">
+    <title>Hive Avances</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">HIVE CENTRO HISTORICO</p>
+        <h1>Levantamiento diario</h1>
+        <p id="cloudStatus" class="cloudStatus">Modo local</p>
+      </div>
+      <button id="installButton" class="iconButton" type="button" title="Instalar app" hidden>+</button>
+    </header>
+
+    <main>
+      <section class="summaryPanel">
+        <div>
+          <span class="metric" id="completedMetric">0%</span>
+          <span class="metricLabel">completado</span>
+        </div>
+        <div>
+          <span class="metric" id="pendingMetric">0</span>
+          <span class="metricLabel">pendientes</span>
+        </div>
+        <div>
+          <span class="metric" id="defectiveMetric">0</span>
+          <span class="metricLabel">defectuosos</span>
+        </div>
+      </section>
+
+      <section class="controls">
+        <label>
+          Habitacion
+          <select id="roomSelect"></select>
+        </label>
+        <label>
+          Responsable
+          <input id="inspectorInput" type="text" placeholder="Nombre">
+        </label>
+        <label>
+          Fecha
+          <input id="dateInput" type="date">
+        </label>
+      </section>
+
+      <nav id="categoryTabs" class="tabs" aria-label="Categorias"></nav>
+
+      <section class="toolbar">
+        <input id="searchInput" type="search" placeholder="Buscar partida o especialidad">
+        <button id="reportButton" type="button">Reporte diario</button>
+      </section>
+
+      <section id="checklist" class="checklist" aria-live="polite"></section>
+    </main>
+
+    <dialog id="reportDialog">
+      <form method="dialog">
+        <header class="dialogHeader">
+          <h2>Reporte diario</h2>
+          <button class="iconButton" value="cancel" title="Cerrar">x</button>
+        </header>
+        <textarea id="reportText" rows="16"></textarea>
+        <div class="dialogActions">
+          <button id="copyReportButton" type="button">Copiar</button>
+          <button id="shareReportButton" type="button">Compartir</button>
+          <button id="exportCsvButton" type="button">CSV</button>
+        </div>
+      </form>
+    </dialog>
+
+    <template id="itemTemplate">
+      <article class="itemCard">
+        <div class="itemHead">
+          <div>
+            <h2></h2>
+            <p></p>
+          </div>
+          <span class="statusPill"></span>
+        </div>
+        <div class="segmented">
+          <button type="button" data-status="pendiente">Pendiente</button>
+          <button type="button" data-status="defectuoso">Defectuoso</button>
+          <button type="button" data-status="completado">Completado</button>
+        </div>
+        <label class="noteLabel">
+          Observacion
+          <textarea rows="2" placeholder="Detalle, ubicacion o accion requerida"></textarea>
+        </label>
+        <div class="photoRow">
+          <label class="fileButton">
+            Foto
+            <input type="file" accept="image/*" capture="environment">
+          </label>
+          <div class="photoPreview"></div>
+        </div>
+      </article>
+    </template>
+
+    <script src="cloudflare-api.js"></script>
+    <script src="app.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("sw.js");
+        });
+      }
+    </script>
+  </body>
+</html>
