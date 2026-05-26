@@ -27,4 +27,14 @@ class RecordTest < ActiveSupport::TestCase
     assert_match(/\Arecord-101-/, r.frame_id)
     assert_no_match(/:/, r.frame_id)
   end
+
+  test "rejects more than 3 photos" do
+    r = Record.new(id: "101::Puerta habitacion::Marco",
+                   room: "101", category: "Puerta habitacion",
+                   item: "Marco", report_date: Date.today)
+    # Patch size on the attached proxy singleton to simulate 4 attached photos
+    r.photos.instance_eval { def size = 4 }
+    assert r.invalid?
+    assert_includes r.errors[:photos], "máximo 3 fotos por partida"
+  end
 end

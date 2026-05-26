@@ -22,12 +22,12 @@ class Record < ApplicationRecord
   end
 
   def frame_id
-    "record-#{room}-#{item.parameterize}"
+    "record-#{room}-#{item&.parameterize}"
   end
 
   private
 
   def max_three_photos
-    errors.add(:photos, "máximo 3 fotos por partida") if photos.count > 3
+    errors.add(:photos, "máximo 3 fotos por partida") if photos.size > 3
   end
 end

@@ -1,6 +1,16 @@
 # app/models/checklist.rb
 module Checklist
-  DATA = YAML.load_file(Rails.root.join("config/checklist.yml")).freeze
+  DATA = begin
+    raw = YAML.load_file(Rails.root.join("config/checklist.yml"))
+    deep_freeze = ->(obj) {
+      case obj
+      when Hash  then obj.each_value { |v| deep_freeze.call(v) }.freeze
+      when Array then obj.each { |v| deep_freeze.call(v) }.freeze
+      else            obj.freeze rescue obj
+      end
+    }
+    deep_freeze.call(raw)
+  end
 
   def self.categories
     DATA["categories"]

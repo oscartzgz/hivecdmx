@@ -1,6 +1,6 @@
 class CreateRecords < ActiveRecord::Migration[8.1]
   def change
-    create_table :records, id: :string, force: :cascade do |t|
+    create_table :records, id: :string do |t|
       t.string  :room,        null: false
       t.string  :category,    null: false
       t.string  :item,        null: false
