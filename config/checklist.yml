@@ -1,0 +1,116 @@
+# config/checklist.yml
+rooms:
+  floors:
+    - range: [101, 119]
+    - range: [201, 219]
+    - range: [301, 319]
+    - range: [401, 419]
+    - range: [501, 519]
+    - range: [601, 619]
+    - range: [701, 719]
+    - range: [801, 812]
+    - range: [901, 910]
+
+categories:
+  - name: "Puerta habitacion"
+    items:
+      - { name: "No. de habitacion",          owner: "SANTI",      hint: "sello negro" }
+      - { name: "Marco",                       owner: "MIFE",       hint: "revisar pintura" }
+      - { name: "Chapa assa abloy",            owner: "ASSA ABLOY", hint: "funcionamiento" }
+      - { name: "Tope de puerta",              owner: "VITECH",     hint: "firmeza" }
+      - { name: "Seguro/dead bolt",            owner: "MIFE",       hint: "firmeza" }
+      - { name: "Mirilla",                     owner: "MIFE",       hint: "" }
+      - { name: "Guillotina acustica",         owner: "MIFE",       hint: "" }
+      - { name: "Sello perimetral",            owner: "MIFE",       hint: "instalacion" }
+      - { name: "Hoyo en marcos silenciadores",owner: "MIFE",       hint: "" }
+      - { name: "Cierra puertas automatico",   owner: "MIFE",       hint: "" }
+      - { name: "Zoclo de aluminio",           owner: "MIFE",       hint: "" }
+
+  - name: "Carpinteria"
+    items:
+      - { name: "Escritorio",               owner: "BAKAN", hint: "revisar pijas y clavos" }
+      - { name: "Maletero",                 owner: "BAKAN", hint: "revisar pijas, clavos y firmeza" }
+      - { name: "Buros",                    owner: "BAKAN", hint: "revisar pijas, clavos y firmeza" }
+      - { name: "Base de cama",             owner: "BAKAN", hint: "revisar pijas y clavos" }
+      - { name: "Ajuste de closet a plafon",owner: "BAKAN", hint: "revisar ajuste y/o cuna" }
+      - { name: "Ajuste de closet a piso",  owner: "BAKAN", hint: "revisar ajuste y/o cuna" }
+
+  - name: "Electrico"
+    items:
+      - { name: "Acabado de columna circular",         owner: "DG",       hint: "" }
+      - { name: "Registro de lamina pintado",          owner: "HERMES",   hint: "" }
+      - { name: "Termostato",                          owner: "HERMES",   hint: "" }
+      - { name: "Rebabeo de durock y pegaporcelanato", owner: "REMEDIOS", hint: "" }
+
+  - name: "Interior bano"
+    items:
+      - { name: "Regadera",                          owner: "QM",       hint: "" }
+      - { name: "Junteo vertical porcelanato muro",  owner: "OBRA",     hint: "" }
+      - { name: "Pintura en plafon de bano",         owner: "DG",       hint: "" }
+      - { name: "Junteo horizontal porcelanato plafon", owner: "OBRA",  hint: "" }
+      - { name: "Riel de ajuste en plafon",          owner: "VITECH",   hint: "" }
+      - { name: "Toallero en regadera",              owner: "QM",       hint: "" }
+      - { name: "Luna espejo",                       owner: "VITECH",   hint: "" }
+      - { name: "Monomando sellado",                 owner: "QM",       hint: "" }
+      - { name: "Sello en chapeton regadera",        owner: "QM",       hint: "" }
+      - { name: "Tope en puerta de cancel corredizo",owner: "VITECH",   hint: "" }
+      - { name: "Lavamanos",                         owner: "QM",       hint: "" }
+      - { name: "Piezas rotas de porcelanato",       owner: "REMEDIOS", hint: "" }
+      - { name: "Fijacion de wc y sellado",          owner: "QM",       hint: "" }
+      - { name: "Pruebas de hermeticidad WC, coladeras y lavabo", owner: "QM", hint: "" }
+      - { name: "Contacto falla a tierra",           owner: "HUERTA",   hint: "" }
+      - { name: "2 Punto de luz en bano",            owner: "HUERTA",   hint: "" }
+      - { name: "Apagadores",                        owner: "HUERTA",   hint: "" }
+
+  - name: "Limpieza"
+    items:
+      - { name: "Limpieza de muros de concreto", owner: "SANTI", hint: "aspirado y sellado" }
+      - { name: "Limpieza de plafon",            owner: "SANTI", hint: "aspirado y sellado" }
+      - { name: "Limpieza trabe de acero",       owner: "SANTI", hint: "limpieza" }
+      - { name: "Limpieza de cancel de bano",    owner: "SANTI", hint: "limpieza" }
+      - { name: "Limpieza cancel corredizo",     owner: "SANTI", hint: "limpieza" }
+
+  - name: "Canceleria"
+    items:
+      - { name: "Descuadre de cancel corredizo", owner: "VITECH", hint: "" }
+      - { name: "Instalacion de barandal",       owner: "VITECH", hint: "" }
+      - { name: "Sello en exterior",             owner: "VITECH", hint: "" }
+      - { name: "Sello en interior",             owner: "VITECH", hint: "" }
+      - { name: "Sellos aluminio cristal",       owner: "VITECH", hint: "" }
+      - { name: "Junquillo de goma",             owner: "VITECH", hint: "verificar si esta completo" }
+      - { name: "Sello en acceso a bano",        owner: "SANTI",  hint: "" }
+      - { name: "Recibir canal de aluminio",     owner: "SANTI",  hint: "" }
+      - { name: "Cortinero de aluminio",         owner: "VITECH", hint: "" }
+
+  - name: "Cortinas"
+    items:
+      - { name: "Frescura, bastones y deslizamiento", owner: "", hint: "" }
+      - { name: "Black out, bastones y deslizamiento",owner: "", hint: "" }
+      - { name: "Rieles limpios",                     owner: "", hint: "" }
+
+  - name: "Equipamiento"
+    items:
+      - { name: "Modem GRANDSTREAM",   owner: "RICARDO", hint: "" }
+      - { name: "Television SMART TV", owner: "GGROUP",  hint: "" }
+      - { name: "Telefono wifi",       owner: "RICARDO", hint: "" }
+      - { name: "Minibar",             owner: "GGROUP",  hint: "" }
+      - { name: "Caja fuerte",         owner: "GGROUP",  hint: "" }
+      - { name: "Cafetera",            owner: "GGROUP",  hint: "" }
+      - { name: "Amenidades regadera", owner: "GGROUP",  hint: "" }
+      - { name: "Amenidades lavamanos",owner: "GGROUP",  hint: "" }
+      - { name: "Secadora",            owner: "GGROUP",  hint: "" }
+      - { name: "Plancha y burro",     owner: "GGROUP",  hint: "" }
+      - { name: "Toallas",             owner: "GGROUP",  hint: "" }
+      - { name: "Sabanas",             owner: "GGROUP",  hint: "" }
+      - { name: "Almohadas",           owner: "GGROUP",  hint: "" }
+      - { name: "Duvet",               owner: "GGROUP",  hint: "" }
+      - { name: "Pie de cama",         owner: "GGROUP",  hint: "" }
+      - { name: "Cojin deco",          owner: "GGROUP",  hint: "" }
+      - { name: "Bote de basura",      owner: "GGROUP",  hint: "" }
+      - { name: "Ganchos",             owner: "GGROUP",  hint: "" }
+      - { name: "Cuadro decorativo",   owner: "GGROUP",  hint: "" }
+      - { name: "Detector de humo",    owner: "GGROUP",  hint: "" }
+      - { name: "Base de tv / pantalla",owner: "GGROUP", hint: "" }
+      - { name: "Silla escritorio",    owner: "GGROUP",  hint: "" }
+      - { name: "Tapete de alfombra",  owner: "GGROUP",  hint: "" }
+      - { name: "Colchones",           owner: "GGROUP",  hint: "" }
