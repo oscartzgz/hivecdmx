@@ -1,0 +1,7 @@
+/ app/views/records/update.turbo_stream.slim
+= turbo_stream.replace @record.frame_id do
+  = render "records/record",
+           record:   @record,
+           item:     Checklist.items_for(@record.category).find { |i| i["name"] == @record.item } || {},
+           room:     @record.room,
+           category: @record.category
