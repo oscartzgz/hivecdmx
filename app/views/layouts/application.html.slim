@@ -18,4 +18,8 @@ html lang="es"
     = javascript_importmap_tags
   body data-controller="pwa-install"
     = render "layouts/flash"
+    button#pwa-install-btn.btn style="display:none;position:fixed;bottom:var(--space-4);right:var(--space-4)"
+                                data-action="click->pwa-install#install"
+                                hidden=true
+      | + Instalar app
     = yield
