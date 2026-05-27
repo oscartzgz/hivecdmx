@@ -3,6 +3,7 @@ class RecordsController < ApplicationController
   before_action :set_record
 
   def update
+    @checklist_item = checklist_item
     if @record.update(record_params)
       respond_to do |format|
         format.turbo_stream
@@ -14,7 +15,7 @@ class RecordsController < ApplicationController
           render turbo_stream: turbo_stream.replace(
             @record.frame_id,
             partial: "records/record",
-            locals: { record: @record, item: checklist_item, room: @record.room, category: @record.category }
+            locals: { record: @record, item: @checklist_item, room: @record.room, category: @record.category }
           )
         end
         format.html { redirect_to room_path(@record.room), alert: @record.errors.full_messages.to_sentence }
@@ -41,7 +42,7 @@ class RecordsController < ApplicationController
   end
 
   def record_params
-    params.require(:record).permit(:status, :note, :room, :category, :item, :owner, :report_date)
+    params.require(:record).permit(:status, :note, :owner, :report_date)
   end
 
   def checklist_item
