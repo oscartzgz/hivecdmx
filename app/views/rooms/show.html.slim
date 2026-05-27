@@ -1,0 +1,30 @@
+/ app/views/rooms/show.html.slim
+header.topbar
+  div
+    p.topbar__eyebrow Hive Centro Histórico
+    h1.topbar__title
+      | Habitación
+      = @room
+    p.topbar__status Conectado
+  div.topbar__metric
+    span.topbar__metric-value = "#{@progress_pct}%"
+    span.topbar__metric-label avance
+
+section.metrics
+  = render "rooms/metrics", room: @room, records: @records
+
+nav.tabs
+  - Checklist.categories.each do |cat|
+    = link_to cat["name"],
+        room_path(@room, category: cat["name"]),
+        class: [ "tab", ("tab--active" if cat["name"] == @category) ]
+
+div style="padding:var(--space-2) 0" data-controller="search"
+  div style="padding:0 var(--space-4) var(--space-3)"
+    input.form-field type="search" placeholder="Buscar partida o especialidad"
+          data-search-target="query"
+          data-action="input->search#filter"
+
+  - @sorted_items.each do |item|
+    - record = @records[item["name"]]
+    = render "records/record", item: item, record: record, room: @room, category: @category

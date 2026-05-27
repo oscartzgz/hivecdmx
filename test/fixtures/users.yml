@@ -1,13 +1,11 @@
-<% password_digest = BCrypt::Password.create("password") %>
-
-one:
-  email_address: one@example.com
-  password_digest: <%= password_digest %>
-  name: Inspector One
+inspector_one:
+  email_address: ana@hive.mx
+  password_digest: <%= BCrypt::Password.create("password123") %>
+  name: Ana García
   role: 0
 
-two:
-  email_address: two@example.com
-  password_digest: <%= password_digest %>
-  name: Admin Two
+admin_one:
+  email_address: admin@hive.mx
+  password_digest: <%= BCrypt::Password.create("password123") %>
+  name: Admin Hive
   role: 1

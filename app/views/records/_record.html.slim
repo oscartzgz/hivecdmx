@@ -1,0 +1,37 @@
+/ app/views/records/_record.html.slim
+- composite_key = Checklist.composite_key(room, category, item["name"])
+- record ||= Record.new(id: composite_key, room: room, category: category,
+                        item: item["name"], owner: item["owner"],
+                        status: "pendiente", report_date: Date.today)
+- status = record.status
+
+= turbo_frame_tag record.frame_id
+  article.item-card data-status=status data-search-target="card"
+    div.item-card__head
+      div
+        h2.item-card__title = item["name"]
+        p.item-card__meta
+          - parts = [ item["owner"].presence && "Especialidad: #{item["owner"]}", item["hint"].presence ].compact
+          = parts.join(" | ")
+      span class="status-pill status-pill--#{status}" = status
+
+    = form_with url: record_path(composite_key), method: :patch, data: { turbo_frame: record.frame_id } do |f|
+      = f.hidden_field :room,        value: room
+      = f.hidden_field :category,    value: category
+      = f.hidden_field :item,        value: item["name"]
+      = f.hidden_field :owner,       value: item["owner"]
+      = f.hidden_field :report_date, value: Date.today
+
+      div.segmented
+        - %w[pendiente defectuoso completado].each do |s|
+          button.segmented__btn type="submit" name="record[status]" value=s class=("is-active" if status == s) data-status=s = s.capitalize
+
+      = f.text_area :note, value: record.note, rows: 2, class: "item-card__note", placeholder: "Observación, ubicación o acción requerida"
+
+    div.item-card__photo-row data-controller="camera" data-camera-record-id-value=composite_key
+      label.item-card__photo-btn
+        | 📷 Foto
+        input type="file" accept="image/*" capture="environment" style="display:none" data-camera-target="input" data-action="change->camera#capture"
+      div.item-card__photo-preview data-camera-target="preview"
+        - record.photos.each do |photo|
+          img src=url_for(photo) alt="foto de avance"

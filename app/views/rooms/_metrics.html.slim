@@ -1,0 +1,16 @@
+/ app/views/rooms/_metrics.html.slim
+- all_records = Record.where(room: room)
+- completed = all_records.count(&:completado?)
+- pending   = all_records.count(&:pendiente?)
+- defective = all_records.count(&:defectuoso?)
+
+div.metrics
+  div.metric-card.metric-card--complete
+    span.metric-card__value = completed
+    span.metric-card__label completados
+  div.metric-card
+    span.metric-card__value = pending
+    span.metric-card__label pendientes
+  div.metric-card.metric-card--defective
+    span.metric-card__value = defective
+    span.metric-card__label defectuosos
