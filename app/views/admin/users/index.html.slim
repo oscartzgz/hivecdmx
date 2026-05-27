@@ -1,0 +1,19 @@
+/ app/views/admin/users/index.html.slim
+= content_for :title, "Usuarios"
+header.topbar
+  div
+    p.topbar__eyebrow Admin
+    h1.topbar__title Usuarios
+  = link_to "Nuevo usuario", new_admin_user_path, class: "btn btn--outline"
+
+div.container style="padding:var(--space-4)"
+  - @users.each do |user|
+    div style="background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-3);margin-bottom:var(--space-2);display:flex;justify-content:space-between;align-items:center"
+      div
+        strong = user.name
+        span style="margin-left:var(--space-2);color:var(--color-text-muted);font-size:var(--font-size-sm)" = user.email_address
+        span class="status-pill status-pill--#{user.admin? ? 'completado' : 'pendiente'}" style="margin-left:var(--space-2)"
+          = user.role
+      div style="display:flex;gap:var(--space-2)"
+        = link_to "Editar", edit_admin_user_path(user), class: "btn btn--outline"
+        = button_to "Eliminar", admin_user_path(user), method: :delete, class: "btn", style: "background:var(--color-defective)", data: { turbo_confirm: "¿Eliminar #{user.name}?" }

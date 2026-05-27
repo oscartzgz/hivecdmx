@@ -1,0 +1,23 @@
+/ app/views/admin/records/index.html.slim
+= content_for :title, "Registros"
+header.topbar
+  div
+    p.topbar__eyebrow Admin
+    h1.topbar__title Todos los registros
+
+div.container style="padding:var(--space-4)"
+  div style="display:flex;gap:var(--space-2);margin-bottom:var(--space-4)"
+    = select_tag :room, options_for_select(["Todas"] + Checklist.rooms, params[:room]),
+                 onchange: "window.location='/admin/records?room='+this.value"
+    = select_tag :status, options_for_select([["Todos",""],["Pendiente","pendiente"],["Defectuoso","defectuoso"],["Completado","completado"]], params[:status]),
+                 onchange: "window.location='/admin/records?status='+this.value"
+
+  - @records.each do |r|
+    div style="background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-3);margin-bottom:var(--space-2)"
+      div style="display:flex;justify-content:space-between"
+        div
+          strong = "Hab #{r.room}"
+          span style="color:var(--color-text-muted);margin:0 var(--space-2)" = "#{r.category} / #{r.item}"
+        span class="status-pill status-pill--#{r.status}" = r.status
+      - if r.note.present?
+        p style="margin:var(--space-1) 0 0;font-size:var(--font-size-sm);color:var(--color-text-muted)" = r.note

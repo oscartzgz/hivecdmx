@@ -1,0 +1,22 @@
+/ app/views/admin/users/edit.html.slim
+= content_for :title, "Editar #{@user.name}"
+header.topbar
+  div
+    p.topbar__eyebrow Admin
+    h1.topbar__title = "Editar #{@user.name}"
+
+div.container style="padding:var(--space-4)"
+  = form_with model: [:admin, @user] do |f|
+    .form-field
+      = f.label :name, "Nombre"
+      = f.text_field :name
+    .form-field
+      = f.label :email_address, "Correo"
+      = f.email_field :email_address
+    .form-field
+      = f.label :password, "Nueva contraseña"
+      = f.password_field :password, placeholder: "Dejar en blanco para no cambiar"
+    .form-field
+      = f.label :role, "Rol"
+      = f.select :role, User.roles.keys.map { |r| [r.capitalize, r] }
+    = f.submit "Guardar", class: "btn"

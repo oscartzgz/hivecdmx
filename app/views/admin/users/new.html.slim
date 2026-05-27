@@ -1,0 +1,22 @@
+/ app/views/admin/users/new.html.slim
+= content_for :title, "Nuevo usuario"
+header.topbar
+  div
+    p.topbar__eyebrow Admin
+    h1.topbar__title Nuevo usuario
+
+div.container style="padding:var(--space-4)"
+  = form_with model: [:admin, @user] do |f|
+    .form-field
+      = f.label :name, "Nombre"
+      = f.text_field :name
+    .form-field
+      = f.label :email_address, "Correo"
+      = f.email_field :email_address
+    .form-field
+      = f.label :password, "Contraseña"
+      = f.password_field :password
+    .form-field
+      = f.label :role, "Rol"
+      = f.select :role, User.roles.keys.map { |r| [r.capitalize, r] }
+    = f.submit "Crear usuario", class: "btn"
