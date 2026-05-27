@@ -34,7 +34,7 @@ div.container style="padding:var(--space-4)"
   - if @defective.any?
     h3 Defectuosos / atención requerida
     - @defective.each do |r|
-      div style="background:var(--color-defective-bg);border:1px solid var(--color-defective-border);border-radius:var(--radius-md);padding:var(--space-3);margin-bottom:var(--space-2)"
+      div data-defective-item="true" style="background:var(--color-defective-bg);border:1px solid var(--color-defective-border);border-radius:var(--radius-md);padding:var(--space-3);margin-bottom:var(--space-2)"
         strong = "#{r.category} / #{r.item}"
         - if r.owner.present?
           span style="color:var(--color-text-muted)"

@@ -34,6 +34,10 @@ module Admin
     end
 
     def destroy
+      if @user == Current.user
+        redirect_to admin_users_path, alert: "No puedes eliminarte a ti mismo."
+        return
+      end
       @user.destroy
       redirect_to admin_users_path, notice: "Usuario eliminado."
     end
