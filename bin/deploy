@@ -1,0 +1,18 @@
+#!/bin/bash
+# bin/deploy — Usage: bin/deploy user@ip
+set -e
+
+REMOTE="${1:?Usage: bin/deploy user@ip}"
+APP_DIR="/opt/hive-rails"
+
+echo "→ Desplegando en $REMOTE"
+
+ssh "$REMOTE" bash <<ENDSSH
+  set -e
+  cd $APP_DIR
+  git pull origin main
+  docker compose -f docker-compose.prod.yml build web
+  docker compose -f docker-compose.prod.yml up -d --no-deps web
+  docker compose -f docker-compose.prod.yml exec web bin/rails db:migrate
+  echo "✓ Deploy completado"
+ENDSSH
