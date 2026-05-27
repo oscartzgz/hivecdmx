@@ -1,0 +1,14 @@
+/ app/views/passwords/new.html.slim
+div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:var(--space-4)"
+  div style="width:100%;max-width:360px"
+    div.topbar style="border-radius:var(--radius-lg);margin-bottom:var(--space-6)"
+      div
+        p.topbar__eyebrow Hive Centro Histórico
+        h1.topbar__title Restablecer contraseña
+
+    = form_with url: passwords_path do |f|
+      .form-field
+        = f.label :email_address, "Correo electrónico"
+        = f.email_field :email_address, autocomplete: "email", autofocus: true
+      = f.submit "Enviar instrucciones", class: "btn", style: "width:100%"
+    = link_to "Volver al inicio de sesión", new_session_path, style: "display:block;margin-top:var(--space-4);text-align:center;color:var(--color-brand)"

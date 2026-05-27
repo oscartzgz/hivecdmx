@@ -1,0 +1,16 @@
+/ app/views/passwords/edit.html.slim
+div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:var(--space-4)"
+  div style="width:100%;max-width:360px"
+    div.topbar style="border-radius:var(--radius-lg);margin-bottom:var(--space-6)"
+      div
+        p.topbar__eyebrow Hive Centro Histórico
+        h1.topbar__title Nueva contraseña
+
+    = form_with url: password_path(params[:token]), method: :put do |f|
+      .form-field
+        = f.label :password, "Nueva contraseña"
+        = f.password_field :password, autocomplete: "new-password", autofocus: true
+      .form-field
+        = f.label :password_confirmation, "Confirmar contraseña"
+        = f.password_field :password_confirmation, autocomplete: "new-password"
+      = f.submit "Cambiar contraseña", class: "btn", style: "width:100%"
