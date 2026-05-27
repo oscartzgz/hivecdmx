@@ -71,3 +71,6 @@ end
 
 # minitest 6.x is incompatible with Ruby 3.4.0dev optparse
 gem "minitest", "~> 5.25"
+
+# Ruby 3.4+ no longer includes csv in default gems
+gem "csv"
