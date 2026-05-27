@@ -1,0 +1,52 @@
+/ app/views/reports/show.html.slim
+= content_for :title, "Reporte #{@room}"
+
+header.topbar
+  div
+    p.topbar__eyebrow Hive Centro Histórico
+    h1.topbar__title Reporte diario
+
+div.container style="padding:var(--space-4)"
+
+  div style="display:flex;gap:var(--space-2);margin-bottom:var(--space-4)"
+    div.form-field style="flex:1"
+      label Habitación
+      = select_tag :room, options_for_select(Checklist.rooms, @room),
+                   onchange: "window.location='/reports?room='+this.value+'&date=#{@date}'"
+    div.form-field style="flex:1"
+      label Fecha
+      = date_field_tag :date, @date,
+                       onchange: "window.location='/reports?room=#{@room}&date='+this.value"
+
+  div style="background:var(--color-card);border-radius:var(--radius-lg);padding:var(--space-4);border:1px solid var(--color-border);margin-bottom:var(--space-4)"
+    h2 style="margin:0 0 var(--space-3);font-size:var(--font-size-lg)" Resumen
+    p
+      | Avance:
+      strong = "#{@pct}%"
+    p
+      | Completados:
+      strong = @completed.length
+      |  · Pendientes:
+      strong = @total - @completed.length - @defective.length
+      |  · Defectuosos:
+      strong = @defective.length
+
+  - if @defective.any?
+    h3 Defectuosos / atención requerida
+    - @defective.each do |r|
+      div style="background:var(--color-defective-bg);border:1px solid var(--color-defective-border);border-radius:var(--radius-md);padding:var(--space-3);margin-bottom:var(--space-2)"
+        strong = "#{r.category} / #{r.item}"
+        - if r.owner.present?
+          span style="color:var(--color-text-muted)"
+            |  (#{r.owner})
+        - if r.note.present?
+          p style="margin:var(--space-1) 0 0;font-size:var(--font-size-sm)" = r.note
+
+  div style="display:flex;gap:var(--space-2);margin-top:var(--space-6)"
+    button.btn type="button"
+               data-controller="report"
+               data-report-room-value=@room
+               data-report-date-value=@date
+               data-action="click->report#share"
+      | Compartir
+    = link_to "CSV", export_reports_path(room: @room, date: @date), class: "btn btn--outline"

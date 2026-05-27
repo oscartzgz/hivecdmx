@@ -20,6 +20,7 @@ Bundler.require(*Rails.groups)
 
 module HiveRails
   class Application < Rails::Application
+    require "csv"
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.1
 
