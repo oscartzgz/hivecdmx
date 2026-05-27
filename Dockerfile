@@ -22,11 +22,12 @@ FROM base AS production
 COPY --from=build /bundle /bundle
 COPY --from=build /rails /rails
 
+COPY docker/entrypoint.sh /usr/bin/entrypoint.sh
+RUN chmod +x /usr/bin/entrypoint.sh
+
 RUN useradd -m rails && chown -R rails:rails /rails
 USER rails
 
-COPY docker/entrypoint.sh /usr/bin/entrypoint.sh
-RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 3000
