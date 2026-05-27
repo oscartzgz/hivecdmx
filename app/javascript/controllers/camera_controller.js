@@ -46,7 +46,8 @@ export default class extends Controller {
       body: form
     })
 
-    if (response.ok) {
+    const contentType = response.headers.get("content-type") || ""
+    if (contentType.includes("turbo-stream")) {
       const html = await response.text()
       Turbo.renderStreamMessage(html)
     }

@@ -46,7 +46,7 @@ class PhotosController < ApplicationController
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
           "#{@record.frame_id}-photo-error",
-          html: "<span style='color:var(--color-defective);font-size:var(--font-size-sm)'>#{message}</span>"
+          html: "<span style='color:var(--color-defective);font-size:var(--font-size-sm)'>#{ERB::Util.html_escape(message)}</span>"
         )
       end
       format.html { redirect_to room_path(@record.room), alert: message }
