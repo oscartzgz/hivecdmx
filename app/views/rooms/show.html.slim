@@ -5,8 +5,8 @@ header.topbar
     h1.topbar__title
       | Habitación
       = @room
-    p.topbar__status Conectado
-  div.topbar__metric
+    = link_to "← Habitaciones", rooms_path, class: "topbar__back"
+  div.topbar__metric id="topbar-progress"
     span.topbar__metric-value = "#{@progress_pct}%"
     span.topbar__metric-label avance
 
@@ -21,9 +21,7 @@ nav.tabs
 
 div style="padding:var(--space-2) 0" data-controller="search"
   div style="padding:0 var(--space-4) var(--space-3)"
-    input.form-field type="search" placeholder="Buscar partida o especialidad"
-          data-search-target="query"
-          data-action="input->search#filter"
+    input.form-field(type="search" placeholder="Buscar partida o especialidad" data-search-target="query" data-action="input->search#filter")
 
   - @sorted_items.each do |item|
     - record = @records[item["name"]]

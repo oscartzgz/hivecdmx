@@ -3,7 +3,8 @@
 - record ||= Record.new(id: composite_key, room: room, category: category,
                         item: item["name"], owner: item["owner"],
                         status: "pendiente", report_date: Date.today)
-- status = record.status
+- status  = record.status
+- history = record.persisted? ? record.comments.chronological.includes(:user) : []
 
 = turbo_frame_tag record.frame_id
   article.item-card data-status=status data-search-target="card"
@@ -15,7 +16,8 @@
           = parts.join(" | ")
       span class="status-pill status-pill--#{status}" = status
 
-    = form_with url: record_path(composite_key), method: :patch, data: { turbo_frame: record.frame_id } do |f|
+    / ── Botones de estado ─────────────────────────────────────────────────────
+    = form_with url: record_path(composite_key), method: :patch, scope: :record, data: { turbo_frame: record.frame_id } do |f|
       = f.hidden_field :room,        value: room
       = f.hidden_field :category,    value: category
       = f.hidden_field :item,        value: item["name"]
@@ -26,12 +28,23 @@
         - %w[pendiente defectuoso completado].each do |s|
           button.segmented__btn type="submit" name="record[status]" value=s class=("is-active" if status == s) data-status=s = s.capitalize
 
-      = f.text_area :note, value: record.note, rows: 2, class: "item-card__note", placeholder: "Observación, ubicación o acción requerida"
+    / ── Historial + formulario (ambos colapsados) ─────────────────────────────
+    - if record.persisted?
+      div.item-card__footer
 
-    div.item-card__photo-row data-controller="camera" data-camera-record-id-value=composite_key
-      label.item-card__photo-btn
-        | 📷 Foto
-        input type="file" accept="image/*" capture="environment" style="display:none" data-camera-target="input" data-action="change->camera#capture"
-      div.item-card__photo-preview data-camera-target="preview"
-        - record.photos.each do |photo|
-          img src=url_for(photo) alt="foto de avance"
+        / Historial expandible
+        details.item-card__history open=history.any?
+          summary.item-card__history-toggle
+            | Historial
+            - if history.any?
+              span.item-card__history-count = history.size
+
+          div id="#{record.frame_id}-history"
+            - history.each do |comment|
+              = render "comments/comment", comment: comment
+
+        / Formulario oculto por defecto
+        details.item-card__add-note open=history.any?
+          summary.item-card__add-note-toggle
+            | + Agregar nota
+          = render "comments/form", record: record

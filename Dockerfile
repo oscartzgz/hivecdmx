@@ -2,7 +2,7 @@
 FROM ruby:3.4-slim AS base
 
 RUN apt-get update -qq && apt-get install -y \
-  build-essential libpq-dev nodejs postgresql-client curl git \
+  build-essential libpq-dev libyaml-dev nodejs postgresql-client curl git \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /rails

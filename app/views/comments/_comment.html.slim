@@ -1,0 +1,11 @@
+/ app/views/comments/_comment.html.slim
+article.comment
+  div.comment__row
+    span class="status-pill status-pill--#{comment.status} comment__status" = comment.status
+    time.comment__date datetime=comment.created_at.iso8601 = l(comment.created_at, format: :short)
+    span.comment__author = comment.user.name
+    - if comment.photo.attached?
+      a.comment__photo-link href=url_for(comment.photo) target="_blank" rel="noopener"
+        img.comment__thumb src=url_for(comment.photo) alt="evidencia"
+  - if comment.body.present?
+    p.comment__body = comment.body

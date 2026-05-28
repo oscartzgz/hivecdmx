@@ -7,6 +7,7 @@
   margin: 0 var(--space-4) var(--space-3);
 }
 
+.item-card[data-status="pendiente"]  { border-color: var(--color-pending-border); }
 .item-card[data-status="defectuoso"] { border-color: var(--color-defective-border); }
 .item-card[data-status="completado"] { border-color: var(--color-complete-border); }
 

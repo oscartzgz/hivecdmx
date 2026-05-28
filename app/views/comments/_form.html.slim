@@ -1,0 +1,13 @@
+/ app/views/comments/_form.html.slim
+= form_with url: record_comments_path(record),
+            id: "comment-form-#{record.frame_id}",
+            scope: :comment do |f|
+  = f.hidden_field :status, value: record.status
+  div.comment-form
+    = f.text_area :body, rows: 2, class: "item-card__note",
+                  placeholder: "Agregar seguimiento, observación o nota de avance..."
+    div.comment-form__footer
+      label.comment-form__photo-btn title="Adjuntar foto de evidencia"
+        | 📷
+        = f.file_field :photo, accept: "image/*", style: "display:none"
+      = f.submit "Guardar seguimiento", class: "btn btn--sm btn--secondary"

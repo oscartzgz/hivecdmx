@@ -11,7 +11,7 @@
 .status-pill--pendiente {
   background: var(--color-pending-bg);
   color: var(--color-pending);
-  border-color: var(--color-border);
+  border-color: var(--color-pending-border);
 }
 
 .status-pill--defectuoso {

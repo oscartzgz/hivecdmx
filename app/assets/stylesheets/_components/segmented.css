@@ -6,8 +6,8 @@
 
 .segmented__btn {
   flex: 1;
-  background: var(--color-pending-bg);
-  color: var(--color-text-muted);
+  background: var(--color-btn-idle-bg);
+  color: var(--color-btn-idle-text);
   border: none;
   border-radius: var(--radius-md);
   padding: var(--space-2) var(--space-2);
@@ -15,6 +15,12 @@
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   text-align: center;
+}
+
+.segmented__btn[data-status="pendiente"].is-active {
+  background: var(--color-pending-bg);
+  color: var(--color-pending);
+  border: 2px solid var(--color-pending-border);
 }
 
 .segmented__btn[data-status="defectuoso"].is-active {

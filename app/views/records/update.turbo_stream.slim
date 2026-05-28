@@ -4,3 +4,11 @@
            item:     @checklist_item,
            room:     @record.room,
            category: @record.category
+
+= turbo_stream.replace "room-metrics" do
+  = render "rooms/metrics", room: @record.room, records: @records
+
+= turbo_stream.replace "topbar-progress" do
+  div.topbar__metric id="topbar-progress"
+    span.topbar__metric-value = "#{@progress_pct}%"
+    span.topbar__metric-label avance

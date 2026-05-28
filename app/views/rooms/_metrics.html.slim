@@ -1,15 +1,16 @@
 / app/views/rooms/_metrics.html.slim
+- total     = Checklist.categories.sum { |c| c["items"].length }
 - completed = records.values.count(&:completado?)
-- pending   = records.values.count(&:pendiente?)
 - defective = records.values.count(&:defectuoso?)
+- pending   = total - completed - defective
 
-div.metrics
-  div.metric-card.metric-card--complete
+div.metrics id="room-metrics"
+  div.metric-card.metric-card--complete data-metric="completados"
     span.metric-card__value = completed
     span.metric-card__label completados
-  div.metric-card
+  div.metric-card data-metric="pendientes"
     span.metric-card__value = pending
     span.metric-card__label pendientes
-  div.metric-card.metric-card--defective
+  div.metric-card.metric-card--defective data-metric="defectuosos"
     span.metric-card__value = defective
     span.metric-card__label defectuosos

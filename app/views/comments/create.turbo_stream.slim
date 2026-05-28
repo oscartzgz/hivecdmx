@@ -1,0 +1,11 @@
+/ app/views/comments/create.turbo_stream.slim
+/ Re-renderizamos la tarjeta completa para que:
+/   - el historial quede abierto (open=history.any?)
+/   - el formulario quede limpio
+/   - la foto aparezca sin problemas de caché/URL
+= turbo_stream.replace @record.frame_id do
+  = render "records/record",
+           record:   @record,
+           item:     @checklist_item,
+           room:     @record.room,
+           category: @record.category

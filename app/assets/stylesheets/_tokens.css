@@ -16,9 +16,14 @@
   --color-text-meta:  #a8a29e;
   --color-text-muted: #78716c;
 
+  /* Botón inactivo (neutral) */
+  --color-btn-idle-bg:     #f1f5f9;  /* slate-100 — fondo neutro para estado inactivo */
+  --color-btn-idle-text:   #64748b;  /* slate-500 — texto neutro */
+
   /* Estados */
-  --color-pending:         #78716c;
-  --color-pending-bg:      #f5f5f4;
+  --color-pending:         #92400e;  /* amber-800  — legible sobre fondo claro */
+  --color-pending-bg:      #fef3c7;  /* amber-100  — fondo cálido "por hacer" */
+  --color-pending-border:  #fde68a;  /* amber-200  — borde suave */
   --color-defective:       #ea580c;
   --color-defective-bg:    #fff7ed;
   --color-defective-border:#fed7aa;

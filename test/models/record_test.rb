@@ -28,13 +28,13 @@ class RecordTest < ActiveSupport::TestCase
     assert_no_match(/:/, r.frame_id)
   end
 
-  test "rejects more than 3 photos" do
-    r = Record.new(id: "101::Puerta habitacion::Marco",
-                   room: "101", category: "Puerta habitacion",
-                   item: "Marco", report_date: Date.today)
-    # Patch size on the attached proxy singleton to simulate 4 attached photos
-    r.photos.instance_eval { def size = 4 }
-    assert r.invalid?
-    assert_includes r.errors[:photos], "máximo 3 fotos por partida"
+  test "cada record puede tener muchos comentarios" do
+    r = Record.create!(id: "101::Puerta habitacion::Marco",
+                       room: "101", category: "Puerta habitacion",
+                       item: "Marco", report_date: Date.today)
+    user = users(:inspector_one)
+    Comment.create!(record: r, user: user, status: :pendiente)
+    Comment.create!(record: r, user: user, status: :completado)
+    assert_equal 2, r.comments.count
   end
 end

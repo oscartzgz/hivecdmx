@@ -1,4 +1,0 @@
-= turbo_stream.replace "#{@record.frame_id}-photos" do
-  div.item-card__photo-preview id="#{@record.frame_id}-photos"
-    - @record.photos.each do |photo|
-      img src=url_for(photo) alt="foto de avance"

@@ -16,12 +16,12 @@ services:
     build:
       context: .
       target: base
-    command: bin/rails server -b 0.0.0.0
+    command: bash -c "bundle install && bin/rails server -b 0.0.0.0 -p 4000"
     volumes:
       - .:/rails
       - gems:/bundle
     ports:
-      - "3000:3000"
+      - "4000:4000"
     depends_on:
       db:
         condition: service_healthy

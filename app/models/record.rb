@@ -3,7 +3,7 @@ class Record < ApplicationRecord
   self.primary_key = "id"
 
   belongs_to :user, optional: true
-  has_many_attached :photos
+  has_many :comments, foreign_key: :record_id, dependent: :destroy
 
   enum :status, { pendiente: 0, defectuoso: 1, completado: 2 }, default: :pendiente
 
@@ -11,9 +11,7 @@ class Record < ApplicationRecord
   validates :category,    presence: true
   validates :item,        presence: true
   validates :report_date, presence: true
-  validates :note,        length: { maximum: 2000 }
   validates :inspector,   length: { maximum: 120 }
-  validate  :max_three_photos
 
   STATUS_SORT = { "pendiente" => 0, "defectuoso" => 1, "completado" => 2 }.freeze
 
@@ -23,11 +21,5 @@ class Record < ApplicationRecord
 
   def frame_id
     "record-#{room}-#{item&.parameterize}"
-  end
-
-  private
-
-  def max_three_photos
-    errors.add(:photos, "máximo 3 fotos por partida") if photos.size > 3
   end
 end

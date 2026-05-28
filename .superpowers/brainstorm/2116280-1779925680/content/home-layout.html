@@ -1,0 +1,151 @@
+<h2>¿Qué información debe mostrar la pantalla de inicio?</h2>
+<p class="subtitle">Actualmente solo muestra botones de habitación. ¿Cómo la ampliamos?</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="font-family:sans-serif;font-size:13px;background:#f5f5f4;padding:12px;border-radius:8px">
+        <div style="background:#0f766e;color:white;padding:8px 12px;border-radius:6px;margin-bottom:10px;font-size:11px">
+          <div style="font-size:9px;opacity:.7;margin-bottom:2px">Hive Centro Histórico</div>
+          <div style="font-weight:bold">Seleccionar habitación</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px">
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:6px;padding:8px;text-align:center">
+            <div style="font-size:18px;font-weight:bold;color:#0f766e">62%</div>
+            <div style="font-size:9px;color:#78716c">avance global</div>
+            <div style="background:#e5e7eb;height:4px;border-radius:2px;margin-top:4px">
+              <div style="background:#0f766e;height:4px;border-radius:2px;width:62%"></div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:6px;padding:8px;text-align:center">
+            <div style="font-size:18px;font-weight:bold;color:#15803d">428</div>
+            <div style="font-size:9px;color:#78716c">completados</div>
+          </div>
+          <div style="background:#fff;border:1px solid #fca5a5;border-radius:6px;padding:8px;text-align:center">
+            <div style="font-size:18px;font-weight:bold;color:#dc2626">37</div>
+            <div style="font-size:9px;color:#78716c">defectuosos</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px">
+          <div style="background:#fff;border:1px solid #d1d5db;border-radius:4px;padding:4px;text-align:center;font-size:10px">101</div>
+          <div style="background:#fff;border:1px solid #d1d5db;border-radius:4px;padding:4px;text-align:center;font-size:10px">102</div>
+          <div style="background:#fff;border:1px solid #d1d5db;border-radius:4px;padding:4px;text-align:center;font-size:10px">103</div>
+          <div style="background:#fff;border:1px solid #d1d5db;border-radius:4px;padding:4px;text-align:center;font-size:10px">104</div>
+          <div style="background:#78716c;color:white;border-radius:4px;padding:4px;text-align:center;font-size:10px">…</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Métricas globales arriba</h3>
+      <p>Avance general del proyecto + contadores encima del grid de habitaciones. Simple, una sola vista.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="font-family:sans-serif;font-size:13px;background:#f5f5f4;padding:12px;border-radius:8px">
+        <div style="background:#0f766e;color:white;padding:8px 12px;border-radius:6px;margin-bottom:10px;font-size:11px">
+          <div style="font-size:9px;opacity:.7;margin-bottom:2px">Hive Centro Histórico</div>
+          <div style="font-weight:bold">Seleccionar habitación</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px">
+          <div style="background:#fff;border:1px solid #d1d5db;border-radius:5px;padding:6px;text-align:center">
+            <div style="font-size:11px;font-weight:bold">101</div>
+            <div style="background:#e5e7eb;height:3px;border-radius:2px;margin:3px 0">
+              <div style="background:#0f766e;height:3px;border-radius:2px;width:80%"></div>
+            </div>
+            <div style="font-size:9px;color:#0f766e">80%</div>
+          </div>
+          <div style="background:#fff;border:1px solid #fca5a5;border-radius:5px;padding:6px;text-align:center">
+            <div style="font-size:11px;font-weight:bold">102</div>
+            <div style="background:#e5e7eb;height:3px;border-radius:2px;margin:3px 0">
+              <div style="background:#dc2626;height:3px;border-radius:2px;width:20%"></div>
+            </div>
+            <div style="font-size:9px;color:#dc2626">3 def.</div>
+          </div>
+          <div style="background:#fff;border:1px solid #d1d5db;border-radius:5px;padding:6px;text-align:center">
+            <div style="font-size:11px;font-weight:bold">103</div>
+            <div style="background:#e5e7eb;height:3px;border-radius:2px;margin:3px 0">
+              <div style="background:#0f766e;height:3px;border-radius:2px;width:45%"></div>
+            </div>
+            <div style="font-size:9px;color:#78716c">45%</div>
+          </div>
+          <div style="background:#f5f5f4;border:1px solid #d1d5db;border-radius:5px;padding:6px;text-align:center">
+            <div style="font-size:11px;font-weight:bold;color:#78716c">104</div>
+            <div style="background:#e5e7eb;height:3px;border-radius:2px;margin:3px 0"></div>
+            <div style="font-size:9px;color:#78716c">sin inicio</div>
+          </div>
+          <div style="background:#fff;border:1px solid #d1d5db;border-radius:5px;padding:6px;text-align:center">
+            <div style="font-size:11px;font-weight:bold">105</div>
+            <div style="background:#e5e7eb;height:3px;border-radius:2px;margin:3px 0">
+              <div style="background:#0f766e;height:3px;border-radius:2px;width:100%"></div>
+            </div>
+            <div style="font-size:9px;color:#15803d">✓ listo</div>
+          </div>
+          <div style="background:#78716c;color:white;border-radius:5px;padding:6px;text-align:center">
+            <div style="font-size:11px;font-weight:bold">…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Progreso por habitación</h3>
+      <p>Cada botón muestra su barra de avance y si tiene defectuosos. Se ve de un vistazo cuáles necesitan atención.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="font-family:sans-serif;font-size:13px;background:#f5f5f4;padding:12px;border-radius:8px">
+        <div style="background:#0f766e;color:white;padding:8px 12px;border-radius:6px;margin-bottom:8px;font-size:11px">
+          <div style="font-size:9px;opacity:.7;margin-bottom:2px">Hive Centro Histórico</div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-weight:bold">Seleccionar habitación</span>
+            <span style="font-size:10px;background:rgba(255,255,255,.2);padding:2px 6px;border-radius:4px">62% global</span>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:8px">
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:5px;padding:5px;text-align:center">
+            <div style="font-size:14px;font-weight:bold;color:#15803d">428</div>
+            <div style="font-size:9px;color:#78716c">completados</div>
+          </div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:5px;padding:5px;text-align:center">
+            <div style="font-size:14px;font-weight:bold;color:#92400e">261</div>
+            <div style="font-size:9px;color:#78716c">pendientes</div>
+          </div>
+          <div style="background:#fff;border:1px solid #fca5a5;border-radius:5px;padding:5px;text-align:center">
+            <div style="font-size:14px;font-weight:bold;color:#dc2626">37</div>
+            <div style="font-size:9px;color:#78716c">defectuosos</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px">
+          <div style="background:#fff;border:1px solid #d1d5db;border-radius:4px;padding:4px;text-align:center">
+            <div style="font-size:10px;font-weight:bold">101</div>
+            <div style="background:#e5e7eb;height:2px;border-radius:1px;margin-top:2px">
+              <div style="background:#0f766e;height:2px;border-radius:1px;width:80%"></div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid #fca5a5;border-radius:4px;padding:4px;text-align:center">
+            <div style="font-size:10px;font-weight:bold">102</div>
+            <div style="background:#e5e7eb;height:2px;border-radius:1px;margin-top:2px">
+              <div style="background:#dc2626;height:2px;border-radius:1px;width:20%"></div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid #d1d5db;border-radius:4px;padding:4px;text-align:center">
+            <div style="font-size:10px;font-weight:bold">103</div>
+            <div style="background:#e5e7eb;height:2px;border-radius:1px;margin-top:2px">
+              <div style="background:#0f766e;height:2px;border-radius:1px;width:45%"></div>
+            </div>
+          </div>
+          <div style="background:#78716c;color:white;border-radius:4px;padding:4px;text-align:center;font-size:10px">…</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Ambos combinados</h3>
+      <p>Métricas globales compactas + barra mini en cada habitación. Más información, más espacio usado.</p>
+    </div>
+  </div>
+
+</div>
