@@ -43,10 +43,6 @@ div.container style="padding:var(--space-4)"
           p style="margin:var(--space-1) 0 0;font-size:var(--font-size-sm)" = r.note
 
   div style="display:flex;gap:var(--space-2);margin-top:var(--space-6)"
-    button.btn type="button"
-               data-controller="report"
-               data-report-room-value=@room
-               data-report-date-value=@date
-               data-action="click->report#share"
+    button.btn(type="button" data-controller="report" data-report-room-value=@room data-report-date-value=@date data-action="click->report#share")
       | Compartir
     = link_to "CSV", export_reports_path(room: @room, date: @date), class: "btn btn--outline"

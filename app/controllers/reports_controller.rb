@@ -1,5 +1,7 @@
 # app/controllers/reports_controller.rb
 class ReportsController < ApplicationController
+  before_action :require_admin
+
   def show
     @room        = params[:room] || Checklist.rooms.first
     @date        = params[:date] || Date.today.to_s

@@ -2,11 +2,10 @@ Rails.application.routes.draw do
   root "rooms#index"
 
   resources :rooms,   only: [ :index, :show ]
-  resources :records, only: [ :update ] do
-    resources :photos, only: [ :create, :show ]
-  end
-  resources :reports, only: [ :show ] do
-    collection { get :export }
+  patch "/records/*id",                    to: "records#update",  as: :record,          format: false
+  post  "/records/*record_id/comments",    to: "comments#create", as: :record_comments, format: false
+  resource :reports, only: [ :show ] do
+    get :export, on: :member
   end
 
   namespace :admin do
