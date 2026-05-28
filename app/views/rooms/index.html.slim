@@ -3,8 +3,38 @@ header.topbar
   div
     p.topbar__eyebrow Hive Centro Histórico
     h1.topbar__title Seleccionar habitación
+  div.topbar__metric
+    span.topbar__metric-value = "#{@global_pct}%"
+    span.topbar__metric-label avance
 
-div.container style="padding:var(--space-4)"
+section.metrics
+  div.metrics
+    div.metric-card.metric-card--complete data-metric="completados"
+      span.metric-card__value = @global_completed
+      span.metric-card__label completados
+    div.metric-card.metric-card--pending data-metric="pendientes"
+      span.metric-card__value = @global_pending
+      span.metric-card__label pendientes
+    div.metric-card.metric-card--defective data-metric="defectuosos"
+      span.metric-card__value = @global_defective
+      span.metric-card__label defectuosos
+
+div.container style="padding:var(--space-2) var(--space-4) var(--space-4)"
   div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:var(--space-2)"
     - @rooms.each do |room|
-      = link_to room, room_path(room), class: "btn btn--outline", style: "text-align:center"
+      - stats        = @room_stats[room]
+      - pct          = stats[:total] > 0 ? (stats[:completed] * 100 / stats[:total]) : 0
+      - border_class = if stats[:defective] > 0 then "btn--room-defective" elsif stats[:completed] > 0 then "btn--room-progress" else "" end
+      = link_to room_path(room), class: "btn btn--outline btn--room #{border_class}" do
+        = room
+        div.room-progress
+          div.room-progress__bar style="width:#{pct}%"
+
+  - if Current.user.admin?
+    div.admin-section
+      p.admin-section__label Administración
+      div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)"
+        = link_to reports_path, class: "btn btn--dark"
+          | 📊 Reportes
+        = link_to admin_users_path, class: "btn btn--outline"
+          | 👥 Usuarios

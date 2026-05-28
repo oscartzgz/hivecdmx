@@ -41,4 +41,12 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
     get room_url("101")
     assert_redirected_to new_session_url
   end
+
+  test "index shows global metric cards" do
+    get rooms_url
+    assert_response :success
+    assert_select "[data-metric='completados']"
+    assert_select "[data-metric='pendientes']"
+    assert_select "[data-metric='defectuosos']"
+  end
 end
