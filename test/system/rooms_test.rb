@@ -88,12 +88,11 @@ class HomeTest < ApplicationSystemTestCase
     @admin     = create_admin
   end
 
-  test "la home muestra las 3 tarjetas de métricas globales" do
+  test "la home muestra las tarjetas de métricas por habitación" do
     sign_in_as(@inspector)
     visit rooms_url
     assert_selector "[data-metric='completados']"
     assert_selector "[data-metric='pendientes']"
-    assert_selector "[data-metric='defectuosos']"
   end
 
   test "inspector no ve la sección de administración" do

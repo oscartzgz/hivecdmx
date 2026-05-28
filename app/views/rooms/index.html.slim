@@ -10,14 +10,11 @@ header.topbar
 section.metrics
   div.metrics
     div.metric-card.metric-card--complete data-metric="completados"
-      span.metric-card__value = @global_completed
-      span.metric-card__label completados
+      span.metric-card__value = @rooms_completed
+      span.metric-card__label completadas
     div.metric-card.metric-card--pending data-metric="pendientes"
-      span.metric-card__value = @global_pending
+      span.metric-card__value = @rooms_pending
       span.metric-card__label pendientes
-    div.metric-card.metric-card--defective data-metric="defectuosos"
-      span.metric-card__value = @global_defective
-      span.metric-card__label defectuosos
 
 div.container style="padding:var(--space-2) var(--space-4) var(--space-4)"
   div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:var(--space-2)"

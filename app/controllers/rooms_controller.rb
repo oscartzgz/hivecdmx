@@ -4,8 +4,7 @@ class RoomsController < ApplicationController
     @rooms      = Checklist.rooms
     total_items = Checklist.categories.sum { |c| c["items"].length }
 
-    raw         = Record.group(:room, :status).count
-    all_records = Record.group(:status).count
+    raw = Record.group(:room, :status).count
 
     @room_stats = @rooms.index_with do |room|
       { completed: raw[[room, "completado"]] || 0,
@@ -13,11 +12,9 @@ class RoomsController < ApplicationController
         total:     total_items }
     end
 
-    @global_completed = all_records["completado"] || 0
-    @global_defective = all_records["defectuoso"]  || 0
-    @global_pending   = (@rooms.length * total_items) - @global_completed - @global_defective
-    @global_pct       = (@rooms.length * total_items) > 0 ?
-                          (@global_completed * 100 / (@rooms.length * total_items)) : 0
+    @rooms_completed = @room_stats.count { |_, s| s[:total] > 0 && s[:completed] == s[:total] }
+    @rooms_pending   = @rooms.length - @rooms_completed
+    @global_pct      = @rooms.length > 0 ? (@rooms_completed * 100 / @rooms.length) : 0
   end
 
   def show
