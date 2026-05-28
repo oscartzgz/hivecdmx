@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   patch "/records/*id",                    to: "records#update",  as: :record,          format: false
   post  "/records/*record_id/comments",    to: "comments#create", as: :record_comments, format: false
   resource :reports, only: [ :show ] do
-    get :export, on: :member
+    get :export, on: :collection
   end
 
   namespace :admin do
