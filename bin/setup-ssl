@@ -6,7 +6,7 @@ set -e
 
 DOMAIN="kz360c1.glddns.com"
 EMAIL="${1:?Uso: bin/setup-ssl tu@email.com}"
-COMPOSE="docker compose"
+COMPOSE="docker compose -f docker-compose.prod.yml"
 
 echo "→ Asegurando que el puerto 80 esté libre..."
 $COMPOSE stop nginx 2>/dev/null || true

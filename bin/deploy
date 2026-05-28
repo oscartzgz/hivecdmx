@@ -1,18 +1,16 @@
 #!/bin/bash
-# bin/deploy — Usage: bin/deploy user@ip
+# bin/deploy — Actualiza la app en producción.
+# Ejecutar desde la raíz del repo.
 set -e
 
-REMOTE="${1:?Usage: bin/deploy user@ip}"
-APP_DIR="/opt/hive-rails"
+echo "→ Actualizando código..."
+git pull origin main
 
-echo "→ Desplegando en $REMOTE"
+echo "→ Reconstruyendo imagen web..."
+docker compose -f docker-compose.prod.yml build web
 
-ssh "$REMOTE" bash <<ENDSSH
-  set -e
-  cd $APP_DIR
-  git pull origin main
-  docker compose build web
-  docker compose up -d --no-deps web
-  docker compose exec web bin/rails db:migrate
-  echo "✓ Deploy completado"
-ENDSSH
+echo "→ Reiniciando web y migrando..."
+docker compose -f docker-compose.prod.yml up -d --no-deps web
+docker compose -f docker-compose.prod.yml exec web bin/rails db:migrate
+
+echo "✓ Deploy completado"
