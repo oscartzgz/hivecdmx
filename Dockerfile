@@ -6,12 +6,12 @@ RUN apt-get update -qq && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /rails
-ENV BUNDLE_PATH=/bundle BUNDLE_BIN=/bundle/bin GEM_HOME=/bundle
+ENV BUNDLE_PATH=/bundle BUNDLE_BIN=/bundle/bin GEM_HOME=/bundle BUNDLE_WITHOUT=development:test
 
 # --- Build stage ---
 FROM base AS build
 COPY Gemfile Gemfile.lock ./
-RUN bundle install --without development test
+RUN bundle install
 
 COPY . .
 RUN RAILS_ENV=production SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
