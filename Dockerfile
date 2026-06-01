@@ -14,7 +14,7 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install --without development test
 
 COPY . .
-RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
+RUN RAILS_ENV=production SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
 
 # --- Production stage ---
 FROM base AS production
